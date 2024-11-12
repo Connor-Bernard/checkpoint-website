@@ -1,0 +1,22 @@
+{
+  "name": "checkpoint-website-backend",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "lint": "eslint './src/**/*.js'",
+    "lint:fix": "eslint --fix './src/**/*.js'",
+    "dev": "nodemon ./src/index.js --exec 'npm run lint && node'"
+  },
+  "type": "module",
+  "author": "Connor Bernard",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0",
+    "nodemon": "^2.0.7"
+  }
+}
