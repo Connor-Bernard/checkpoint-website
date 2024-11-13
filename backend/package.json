@@ -1,7 +1,7 @@
 {
   "name": "checkpoint-website-backend",
   "version": "0.1.0",
-  "description": "",
+  "description": "Backend API for the Checkpoint Website",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js",
