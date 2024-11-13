@@ -6,6 +6,16 @@ import helmet from 'helmet';
 import genericErrorHandler from './helpers/genericErrorHandler.js';
 import { apiRouter } from './api/index.js';
 import { PORT } from './config/env.js';
+import { connectDB, disconnectDB } from './db/conn.js';
+
+process.on('SIGINT', async () => {
+    try {
+        await disconnectDB();
+        process.exit(0);
+    } catch (error) {
+        process.exit(1);
+    }
+});
 
 const app = express().use(
     helmet.contentSecurityPolicy({
@@ -28,6 +38,11 @@ apiRouter(app);
 
 app.use(genericErrorHandler);
 
-app.listen(PORT, () => {
-    console.log(`Server started in port ${PORT}`);
-});
+async function startServer() {
+    await connectDB();
+    app.listen(PORT, () => {
+        console.log(`Server started in port ${PORT}`);
+    });
+}
+
+startServer();

@@ -1,13 +1,16 @@
 import express from 'express';
 
+import { User } from '../models/index.js';
+
 export const userController = {
     /**
-     * Get /users
+     * Get all users.
      *
      * @param {express.Request} _req
      * @param {express.Response} res
      */
-    getUsers: (_req, res) => {
-        return res.send({ message: 'All Users Fetch' });
+    getUsers: async (_req, res) => {
+        const users = await User.find();
+        return res.send(users);
     },
 };
