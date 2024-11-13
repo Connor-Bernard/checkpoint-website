@@ -3,6 +3,7 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 
+import genericErrorHandler from './helpers/genericErrorHandler.js';
 import { apiRouter } from './api/index.js';
 import { PORT } from './config/env.js';
 
@@ -24,6 +25,8 @@ const app = express().use(
 );
 
 apiRouter(app);
+
+app.use(genericErrorHandler);
 
 app.listen(PORT, () => {
     console.log(`Server started in port ${PORT}`);
