@@ -1,11 +1,11 @@
-import express, { Router } from 'express';
+import { Router } from 'express';
 
 import v1Router from './v1/routes/index.js';
 
 /**
  * @param {express.Express} app
  */
-export const apiRouter = (app) => {
+export function apiRouter(app) {
     const router = Router();
 
     /**

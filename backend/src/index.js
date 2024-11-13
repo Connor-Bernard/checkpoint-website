@@ -1,18 +1,22 @@
-import express from 'express';
 import cors from 'cors';
-import rateLimit from 'express-rate-limit';
+import express from 'express';
 import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 
 import genericErrorHandler from './helpers/genericErrorHandler.js';
-import { apiRouter } from './api/index.js';
-import { PORT } from './config/env.js';
+
 import { connectDB, disconnectDB } from './db/conn.js';
+import { MINUTE } from './helpers/time.js';
+import { PORT } from './config/env.js';
+import { apiRouter } from './api/index.js';
+
+const RATE_LIMIT_MINUTES = 15;
 
 process.on('SIGINT', async () => {
     try {
         await disconnectDB();
         process.exit(0);
-    } catch (error) {
+    } catch (_) {
         process.exit(1);
     }
 });
@@ -26,7 +30,7 @@ const app = express().use(
     }),
     cors(),
     rateLimit({
-        windowMs: 15 * 60 * 1000,
+        windowMs: RATE_LIMIT_MINUTES * MINUTE,
         limit: 100,
         message: 'Too many requests from this IP, please try again in an hour!',
     }),
@@ -41,6 +45,7 @@ app.use(genericErrorHandler);
 async function startServer() {
     await connectDB();
     app.listen(PORT, () => {
+        // eslint-disable-next-line no-console
         console.log(`Server started in port ${PORT}`);
     });
 }

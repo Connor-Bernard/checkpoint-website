@@ -1,4 +1,4 @@
-import express from 'express';
+import { INTERNAL_SERVICE_ERROR_STATUS } from '../errors/http/index.js';
 
 /**
  * Generic Error Handler
@@ -9,12 +9,12 @@ import express from 'express';
  * @param {express.NextFunction} _next
  * @returns {express.Response}
  */
-export default async function genericErrorHandler(err, _req, res, _next) {
+export default function genericErrorHandler(err, _req, res) {
     console.error(err);
 
     const message = 'Internal Server Error';
     if (!err.status) {
-        return res.status(500).json({
+        return res.status(INTERNAL_SERVICE_ERROR_STATUS).json({
             error: { message },
         });
     }

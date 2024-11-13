@@ -1,5 +1,3 @@
-import express from 'express';
-
 import { User } from '../models/index.js';
 
 export const userController = {
