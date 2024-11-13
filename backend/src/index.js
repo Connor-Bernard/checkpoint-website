@@ -3,10 +3,10 @@ import express from 'express';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 
-import genericErrorHandler from './helpers/genericErrorHandler.js';
+import genericErrorHandler from './lib/helpers/genericErrorHandler.js';
 
 import { connectDB, disconnectDB } from './db/conn.js';
-import { MINUTE } from './helpers/time.js';
+import { MINUTE } from './lib/helpers/time.js';
 import { PORT } from './config/env.js';
 import { apiRouter } from './api/index.js';
 
