@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import ExpandedFooter from './components/footer/ExpandedFooter';
+import Footer from './components/footer/Footer';
+import GetInTouch from './components/get-in-touch/GetInTouch';
+import PopOut from './components/popout/PopOut';
+import GradientBackground from './components/header/GradientBackground';
+import Test from './components/header/Test';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    return (
+        <div className='flex flex-col'>
+            {/* <Test /> */}
+            <GradientBackground />
+            <PopOut />
+            <GetInTouch />
+            <ExpandedFooter />
+            <Footer />
+        </div>
+    );
 }
-
-export default App;
