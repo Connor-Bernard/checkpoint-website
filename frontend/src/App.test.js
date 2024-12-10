@@ -3,6 +3,12 @@ import App from './App';
 import ExpandedFooter from './components/footer/ExpandedFooter';
 import Footer from './components/footer/Footer';
 
+jest.mock('./components/GradientBackground', () => {
+    return function MockGradientBackground({ children }) {
+        return <div data-testid="gradient-background">{children}</div>;
+    };
+});
+
 // Mock the child components
 jest.mock('./components/footer/ExpandedFooter', () => {
     return function MockExpandedFooter() {
