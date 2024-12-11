@@ -3,7 +3,7 @@ const error = document.getElementById("error");
 const name_box = document.getElementById("name_box");
 const email_box = document.getElementById("email_box");
 const password_box = document.getElementById("password_box");
-const url = "signupVar"
+const url = "localhost:8080/api/v1/users"
 
 async function signUp(){
     if (name_box.value != "" && email_box.value != "" && password_box.value != ""){
